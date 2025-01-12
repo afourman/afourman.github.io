@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/nerd-fonts@1.2.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .slider {
+            position: relative;
+            max-width: 90%;
+            height: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            width: 100%;
+            flex-shrink: 0;
+            text-align: center;
+            background: #1e1e1e;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .slide img {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .slide h2 {
+            margin: 10px 0;
+        }
+
+        .slide i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .slider-controls button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: none;
+            background-color: #666;
+            cursor: pointer;
+        }
+
+        .slider-controls button.active {
+            background-color: #007bff;
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #1e1e1e;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer p {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .footer button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .slider {
+                height: auto;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Artemii Fourman - DevOps Specialist</h1>
+    <p>Professional Portfolio</p>
+</header>
+
+<div class="slider">
+    <div class="slides" id="slides">
+        <div class="slide">
+            <i class="fas fa-code-branch"></i>
+            <h2>Git</h2>
+            <p>Version control system used for tracking changes in source code.</p>
+        </div>
+        <div class="slide">
+            <i class="fas fa-box"></i>
+            <h2>Docker</h2>
+            <p>Platform for developing, shipping, and running applications in containers.</p>
+        </div>
+        <div class="slide">
+            <i class="fas fa-network-wired"></i>
+            <h2>Kubernetes</h2>
+            <p>System for automating deployment, scaling, and management of containerized applications.</p>
+        </div>
+        <div class="slide">
+            <i class="fas fa-cloud"></i>
+            <h2>Cloud Infrastructure</h2>
+            <p>Experience with AWS and scalable cloud solutions.</p>
+        </div>
+        <div class="slide">
+            <i class="fas fa-tools"></i>
+            <h2>CI/CD</h2>
+            <p>Implementation of continuous integration and delivery pipelines.</p>
+        </div>
+    </div>
+    <div class="slider-controls">
+        <button class="active" onclick="setSlide(0)"></button>
+        <button onclick="setSlide(1)"></button>
+        <button onclick="setSlide(2)"></button>
+        <button onclick="setSlide(3)"></button>
+        <button onclick="setSlide(4)"></button>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Ready to collaborate? Get in touch with me:</p>
+    <button>Resume</button>
+    <button>View LinkedIn</button>
+    <button>Contact Me</button>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelector('#slides');
+    const buttons = document.querySelectorAll('.slider-controls button');
+    const totalSlides = document.querySelectorAll('.slide').length;
+
+    function setSlide(index) {
+        currentSlide = index;
+        slides.style.transform = `translateX(-${index * 100}%)`;
+        buttons.forEach(btn => btn.classList.remove('active'));
+        buttons[index].classList.add('active');
+    }
+
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        setSlide(currentSlide);
+    }, 3000);
+</script>
+
+</body>
+</html>
